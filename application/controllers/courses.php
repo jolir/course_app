@@ -32,7 +32,23 @@ class Courses extends Main {
 				$data['create_course'] = $this->Course->create_course($post_data);	
 
 				if($data['create_course'])
-					redirect(base_url('main'));
+				{
+					$data['status'] = TRUE;
+					$data['html'] = 	
+						"<div class='accordion-group'>			
+							<div class='accordion-heading'>
+								<a class='accordion-toggle' data-toggle='collapse' data-parent='#accordion2' href='#course".$data['create_course']."'>".$post_data['title']."</a>
+							</div>
+							<div id='course".$data['create_course']."' class='accordion-body collapse in'>
+								<div class='accordion-inner'>
+									<p>".$post_data['description']."</p>
+									<p><a href='' class='pull-right'>delete</a> <a href='' class='pull-right' style='margin-right: 5px;''>edit</a></p>
+								</div>
+							</div>
+						</div>";
+
+					echo json_encode($data);
+				}
 				else
 					$this->load->view('course_new');
 			}

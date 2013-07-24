@@ -9,7 +9,7 @@ class Course extends CI_Model {
 
 	public function get_course()
 	{
-		return $this->db->get('courses')->result_array();
+		return $this->db->order_by('created_at DESC')->get('courses')->result_array();
 	}
 
 	public function create_course($course_info)
@@ -21,7 +21,9 @@ class Course extends CI_Model {
 					"created_at" => date("Y-m-d H:i:s"),
 					"updated_at" => date("Y-m-d H:i:s")
 				);
-		return $this->db->insert('courses', $data);
+		$this->db->insert('courses', $data);
+
+		return $this->db->insert_id();
 	}
 
 }
