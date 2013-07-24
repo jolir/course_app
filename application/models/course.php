@@ -7,6 +7,11 @@ class Course extends CI_Model {
 		parent::__construct();
 	}
 
+	public function get_course()
+	{
+		return $this->db->get('courses')->result_array();
+	}
+
 	public function create_course($course_info)
 	{
 		$this->load->helper('date');

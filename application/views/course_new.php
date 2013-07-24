@@ -11,6 +11,7 @@
 	</script>
 </head>
 <body>
+	<? var_dump($courses); ?>
 	<div class="span4 well">
 	    <form action="courses/course_new" method="post">
 	    	<input type="text" name="title" placeholder="Title" required>
@@ -21,31 +22,22 @@
 	    </form>
 	</div>
 	<div style="clear: both;"></div>
+
 	<div class="accordion span8" id="accordion2">
-	  <div class="accordion-group">
-	    <div class="accordion-heading">
-	      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-	        Collapsible Group Item #1
-	      </a>
-	    </div>
-	    <div id="collapseOne" class="accordion-body collapse in">
-	      <div class="accordion-inner">
-	        Anim pariatur cliche...
-	      </div>
-	    </div>
-	  </div>
-	  <div class="accordion-group">
-	    <div class="accordion-heading">
-	      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-	        Collapsible Group Item #2
-	      </a>
-	    </div>
-	    <div id="collapseTwo" class="accordion-body collapse">
-	      <div class="accordion-inner">
-	        Anim pariatur cliche...
-	      </div>
-	    </div>
-	  </div>
+<? 		foreach($courses as $course) 
+		{ ?>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#course<?= $course['id']; ?>"><?= $course['title']; ?>
+				</a>
+				</div>
+				<div id="course<?= $course['id']; ?>" class="accordion-body collapse in">
+					<div class="accordion-inner">
+						<p><?= $course['description']; ?></p>
+					</div>
+				</div>
+			</div>
+<? 		} ?>
 	</div>
 </body>
 </html>

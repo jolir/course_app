@@ -7,7 +7,9 @@ class Courses extends Main {
 
 	public function index()
 	{
-		$this->load->view('course_new');
+		$this->load->model('Course');
+		$this->view_data['courses'] = $this->Course->get_course();
+		$this->load->view('course_new', $this->view_data);
 	}
 
 	public function course_new()
