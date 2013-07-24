@@ -29,14 +29,15 @@
 
 			// });
 
-			$('.delete_course').submit(function(){
-				var form = $(this);
+			$('#accordion2').on("click", ".delete_course button", function(event){
+				var form = $(this).parent();
 				$.post(form.attr('action'), form.serialize(), function(data){
 					console.log(data);
 					if(data.status)
 						form.parent().parent().parent().fadeOut();
 				}, 'json');
-				return false;
+
+				event.preventDefault();
 			});
 
 		});
@@ -68,7 +69,7 @@
 						<form action="courses/delete_course" method="post" class="delete_course pull-right">
 							<input type="hidden" name="form_action" value="delete_course">
 							<input type="hidden" name="course_id" value="<?= $course['id']; ?>">
-							<button type="submit" class=" delete">delete</button> 
+							<button class="delete">delete</button> 
 						</form>
 						<form action="courses/delete_course" method="post" class="pull-right">
 							<input type="hidden" name="form_action" value="delete_course">

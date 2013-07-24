@@ -35,14 +35,25 @@ class Courses extends Main {
 				{
 					$data['status'] = TRUE;
 					$data['html'] = 	
-						"<div class='accordion-group'>			
-							<div class='accordion-heading'>
+						"<div class='accordion-group'>
+							<div class='accordion-heading' id='course_group".$data['create_course']."'>
 								<a class='accordion-toggle' data-toggle='collapse' data-parent='#accordion2' href='#course".$data['create_course']."'>".$post_data['title']."</a>
 							</div>
 							<div id='course".$data['create_course']."' class='accordion-body collapse'>
 								<div class='accordion-inner'>
 									<p>".$post_data['description']."</p>
-									<p><a href='' class='pull-right'>delete</a> <a href='' class='pull-right' style='margin-right: 5px;''>edit</a></p>
+									<form action='courses/delete_course' method='post' class='delete_course pull-right'>
+										<input type='hidden' name='form_action' value='delete_course'>
+										<input type='hidden' name='course_id' value='".$data['create_course']."'>
+										<button type='submit' class='delete'>delete</button> 
+									</form>
+									<form action='courses/delete_course' method='post' class='pull-right'>
+										<input type='hidden' name='form_action' value='delete_course'>
+										<input type='hidden' name='course_id' value='".$data['create_course']."'>
+										<input type='hidden' name='course_title' value='".$post_data['title']."'>
+										<input type='hidden' name='course_description' value='".$post_data['description']."'>
+										<button class='edit' style='margin-right: 5px;''>edit</button>
+									</form>
 								</div>
 							</div>
 						</div>";
