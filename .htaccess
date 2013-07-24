@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /course_app/main/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ /course_app/index.php/$1 [L]
