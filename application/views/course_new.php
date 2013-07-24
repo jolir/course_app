@@ -15,6 +15,31 @@
 				}, 'json');
 				return false;
 			});
+
+			$('.edit').click(function(){
+				var edit = $(this);
+				var description_text = edit.parent().siblings().text();
+				var description_location = edit.parent().siblings();
+				var title_text = edit.parent().parent().parent().siblings().children().text();
+				var title_location = edit.parent().parent().parent().siblings().children();
+
+
+				if (title_location[0]['localName'] == 'a' && description_location[0]['localName'] == 'p')
+				{
+					description_location.html($('<textarea />',{'value' : description_text}).val(description_text));
+					title_location.html($('<input />', {'value' : title_text}).val(title_text));
+					edit.text("Save");					
+				}
+				else
+				{
+					description_location.html($('<p />',{'value' : description_text}).val(description_text));
+					title_location.html($('<a>', {'value' : title_text}).val(title_text));
+					edit.text("Save");						
+				}
+
+
+			});
+
 		});
 	</script>
 </head>
@@ -41,7 +66,7 @@
 				<div id="course<?= $course['id']; ?>" class="accordion-body collapse">
 					<div class="accordion-inner">
 						<p><?= $course['description']; ?></p>
-						<p><a href="" class="pull-right">delete</a> <a href="" class="pull-right" style="margin-right: 5px;">edit</a></p>
+						<p><button class="pull-right delete">delete</button> <button class="pull-right edit" style="margin-right: 5px;">edit</button></p>
 					</div>
 				</div>
 			</div>
