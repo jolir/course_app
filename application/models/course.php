@@ -26,4 +26,10 @@ class Course extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function delete_course($course_info)
+	{
+		return $this->db->where('id', $course_info['course_id'])
+						->delete('courses');
+	}
+
 }

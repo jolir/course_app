@@ -39,7 +39,7 @@ class Courses extends Main {
 							<div class='accordion-heading'>
 								<a class='accordion-toggle' data-toggle='collapse' data-parent='#accordion2' href='#course".$data['create_course']."'>".$post_data['title']."</a>
 							</div>
-							<div id='course".$data['create_course']."' class='accordion-body collapse in'>
+							<div id='course".$data['create_course']."' class='accordion-body collapse'>
 								<div class='accordion-inner'>
 									<p>".$post_data['description']."</p>
 									<p><a href='' class='pull-right'>delete</a> <a href='' class='pull-right' style='margin-right: 5px;''>edit</a></p>
@@ -57,6 +57,24 @@ class Courses extends Main {
 		else
 			$this->load->view('course_new');
 	}
+
+	public function delete_course()
+	{
+		$post_data = $this->input->post();
+		if(isset($post_data['form_action']) && $post_data['form_action'] == "delete_course")
+		{
+			$this->load->model('Course');
+			$data['delete_course'] = $this->Course->delete_course($post_data);
+
+			if($data['delete_course'])
+				$data['status'] = TRUE;
+			else
+				$data['status'] = FALSE;
+
+			echo json_encode($data);
+		}
+	}
+
 }
 
 /* End of file main.php */
